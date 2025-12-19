@@ -1,0 +1,25 @@
+= Crafting Interpreters: Lox language implementation
+
+This is the raw hand rolled implementation for https://craftinginterpreters.com/the-lox-language.html[Lox language] as described in the book https://craftinginterpreters.com/["Crafting Interpreters"] by __Robert Nystrom__.
+
+This repository represents my personal journey towards working through the books and all the code inside.
+
+== Versioning and Source Control
+
+To organize the work and separate implementations of the language, this repository is split into several branches:
+
+- `main` branch is where I keep this README file and other shared resources.
++
+__Eventually, once I have a good enough grasp on the Lox language, this is also where I intend to host Lox Tree-Sitter grammar and various code editorplugins. Hopefully.__
+
+- `interpreter_1` branch is where my initial implementation based on the first part (https://craftinginterpreters.com/a-tree-walk-interpreter.html[__A Tree-Walk Interpreter__]) of the book goes to live and grow.
+- `interpreter_2` branch is where I intend to build the second interpreter (https://craftinginterpreters.com/a-bytecode-virtual-machine.html[__A Bytecode Virtual Machine__]).
+
+
+=== Note on JJ (jujutsu)
+
+To work on the source code, I am using https://docs.jj-vcs.dev/latest/[jujutsu] version control (`jj` for short) with Git backend.
+
+This means I can craft my git history chapter by chapter and keep it tidy as I go on.
+
+If you want to know more about `jj`, please go and read an https://steveklabnik.github.io/jujutsu-tutorial/[excellent tutorial] by __Steve Klabnik__
