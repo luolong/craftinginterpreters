@@ -8,11 +8,11 @@ This repository represents my personal journey towards working through the books
 
 To organize the work and separate implementations of the language, this repository is split into several branches:
 
-- `main` branch is where I keep this README file and other shared resources.
+- https://github.com/luolong/craftinginterpreters/tree/main[`main`] branch is where I keep this README file and other shared resources.
 +
 __Eventually, once I have a good enough grasp on the Lox language, this is also where I intend to host Lox Tree-Sitter grammar and various code editorplugins. Hopefully.__
 
-- `jlox` branch is where my first implementation based on the Part II (https://craftinginterpreters.com/a-tree-walk-interpreter.html[__A Tree-Walk Interpreter__]) of the book goes to live and grow.
+- https://github.com/luolong/craftinginterpreters/tree/jlox[`jlox`] branch is where my first implementation based on the Part II (https://craftinginterpreters.com/a-tree-walk-interpreter.html[__A Tree-Walk Interpreter__]) of the book goes to live and grow.
 - `clox` branch is where I intend to build the second interpreter (Part III: https://craftinginterpreters.com/a-bytecode-virtual-machine.html[__A Bytecode Virtual Machine__]).
 
 
@@ -21,5 +21,62 @@ __Eventually, once I have a good enough grasp on the Lox language, this is also 
 To work on the source code, I am using https://docs.jj-vcs.dev/latest/[jujutsu] version control (`jj` for short) with Git backend.
 
 This means I can craft my git history chapter by chapter and keep it tidy as I go on.
+Each git commit published to
 
 If you want to know more about `jj`, please go and read an https://steveklabnik.github.io/jujutsu-tutorial/[excellent tutorial] by __Steve Klabnik__
+
+
+== Part II: A Tree-Walk Interpreter (Java)
+
+Branch: https://github.com/luolong/craftinginterpreters/tree/jlox[jlox]
+
+Java implementation of jlox based on and only very slightly modified compared to the
+source code
+
+[meremaid]
+----
+---
+title: Git history
+---
+gitGraph BT:
+  commit id:"Initial commit"
+  branch jlox
+  commit id:"Chapter 4: Scanner"
+  branch jlox-scanner-block-comment
+  commit id:"C style block comments"
+  commit id:"Nested C style block comments"
+----
+
+=== Chapter 4: Scanner
+
+Mostly verbatim code from the book, copied and cleaned up a little.
+Added a test suite for testing token scanning. This reads test cases from `src/test/resources/scanner/*.lox.txt` files.
+
+The file has basic structure like this:
+----
+===
+Optional Test case display name  // <1>
+===
+
+var language = "lox";            // <2>
+
+---                              // <3>
+---
+VAR var
+IDENTIFIER language
+EQUAL
+STRING '"lox"' lox
+SEMICOLON
+---
+EOF
+----
+<1> - Optional header block containing the human-readable display name for the test case.
++
+The header block is surrounded on both sides with a block markers starting with at least three or more equals signs
+<2> - Source of the input to be scanned
+<3> - List of parsed tokens.
++
+List of tokens is separated into lines by a line of three dashes.
+Each token MUST be listed on a separate line in a following general format: `<tokenType> [lexeme]? [value]?`
+
+See link:lox/src/test/resources/scanner/[] for actual test cases.

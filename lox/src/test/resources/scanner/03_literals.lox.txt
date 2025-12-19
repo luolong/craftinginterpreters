@@ -1,0 +1,15 @@
+=============================================
+Literals (strings, numbers, booleans and nil)
+=============================================
+"simple string literal"
+1234 456.78
+true false nil
+---
+STRING '"simple string literal"' "simple string literal"
+---
+NUMBER "1234" 1234
+NUMBER "456.78" 456.78
+---
+TRUE
+FALSE
+NIL

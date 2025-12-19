@@ -1,0 +1,28 @@
+========================
+Keywords and identifiers
+========================
+class fun var // definition keywords
+if else while for return // control flow
+and or // boolean operators
+print // effect
+orchid funfor andor ifelsewhile
+---
+CLASS
+FUN
+VAR
+---
+IF
+ELSE
+WHILE
+FOR
+RETURN
+---
+AND
+OR
+---
+PRINT
+---
+IDENTIFIER orchid
+IDENTIFIER funfor
+IDENTIFIER andor
+IDENTIFIER ifelsewhile

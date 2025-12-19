@@ -1,0 +1,15 @@
+===========================
+Simple operators ({,.-+;*})
+===========================
+({,.-+;*})
+---
+LEFT_PAREN
+LEFT_BRACE
+COMMA
+DOT
+MINUS
+PLUS
+SEMICOLON
+STAR
+RIGHT_BRACE
+RIGHT_PAREN
