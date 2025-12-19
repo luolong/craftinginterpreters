@@ -1,0 +1,47 @@
+====================================
+Block comments (Chapter 4 challenge)
+====================================
+/*****************************/
+a
+/* Single line block comment */
+b
+/*///////////////////////////*/
+and
+/* Multi line
+ * block comment
+ */
+or
+/*
+var language = "lox";
+*/
+return language;
+---
+/*****************************/
+---
+IDENTIFIER a
+---
+/* Single line block comment */
+---
+IDENTIFIER b
+---
+/*///////////////////////////*/
+---
+AND
+---
+ /* Multi line
+---
+  * block comment
+---
+  */
+---
+OR
+---
+  /*
+---
+-- var language = "lox";
+---
+   */
+---
+RETURN
+IDENTIFIER language
+SEMICOLON

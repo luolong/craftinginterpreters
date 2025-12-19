@@ -85,6 +85,8 @@ class Scanner {
                 if (match('/')) {
                     // A comment goes until the end of the line.
                     while (peek() != '\n' && !isAtEnd()) advance();
+                } else if (match('*')) {
+                    blockComment();
                 } else {
                     addToken(SLASH);
                 }
@@ -116,6 +118,20 @@ class Scanner {
         }
     }
 
+    private void blockComment() {
+        while (!isAtEnd()) {
+            char c = advance();
+            switch (c) {
+                case '\n': line++; break;
+                case '*':
+                    if (peek() == '/') {
+                        advance(); // consume
+                        return;
+                    }
+                    break;
+            }
+        }
+    }
     private void string() {
         while (peek() != '"' && !isAtEnd()) {
             if (peek() == '\n') line++;
