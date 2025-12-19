@@ -12,8 +12,8 @@ To organize the work and separate implementations of the language, this reposito
 +
 __Eventually, once I have a good enough grasp on the Lox language, this is also where I intend to host Lox Tree-Sitter grammar and various code editorplugins. Hopefully.__
 
-- `interpreter_1` branch is where my initial implementation based on the first part (https://craftinginterpreters.com/a-tree-walk-interpreter.html[__A Tree-Walk Interpreter__]) of the book goes to live and grow.
-- `interpreter_2` branch is where I intend to build the second interpreter (https://craftinginterpreters.com/a-bytecode-virtual-machine.html[__A Bytecode Virtual Machine__]).
+- `jlox` branch is where my first implementation based on the Part II (https://craftinginterpreters.com/a-tree-walk-interpreter.html[__A Tree-Walk Interpreter__]) of the book goes to live and grow.
+- `clox` branch is where I intend to build the second interpreter (Part III: https://craftinginterpreters.com/a-bytecode-virtual-machine.html[__A Bytecode Virtual Machine__]).
 
 
 === Note on JJ (jujutsu)

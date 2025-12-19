@@ -1,0 +1,23 @@
+{
+  "project_name": "Crafting Interpreters: jlox",
+  "languages": {
+    "Java": {
+      "colorize_brackets": true,
+      "use_on_type_format": false,
+      "indent_guides": {
+        "coloring": "indent_aware",
+      },
+      "preferred_line_length": 120,
+    },
+  },
+  "lsp": {
+    "jdtls": {
+      "settings": {
+        "java_home": "C:\\Users\\rolan\\AppData\\Local\\mise\\installs\\java\\25.0.1\\",
+        "jdk_auto_download": true,
+      },
+    },
+  },
+  "format_on_save": "on",
+  "formatter": "language_server",
+}
