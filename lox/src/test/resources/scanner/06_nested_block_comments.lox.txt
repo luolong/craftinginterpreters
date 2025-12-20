@@ -1,0 +1,27 @@
+a
+/* // simple nested line comment within block comment */
+b
+/*
+// Nested line comment within multi line block comment
+ */
+c
+/*
+ /* single line block comment */
+ within external block comment
+*/
+---
+IDENTIFIER a
+---
+/* // simple nested line comment within block comment */
+---
+IDENTIFIER b
+---
+/*
+---
+// Nested line comment within multi line block comment
+---
+ */
+---
+IDENTIFIER c
+
+

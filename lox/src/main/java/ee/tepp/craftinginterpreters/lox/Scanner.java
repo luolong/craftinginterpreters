@@ -124,10 +124,12 @@ class Scanner {
             switch (c) {
                 case '\n': line++; break;
                 case '*':
-                    if (peek() == '/') {
-                        advance(); // consume
+                    if (match('/')) {
                         return;
                     }
+                    break;
+                case '/':
+                    if (match('*')) blockComment();
                     break;
             }
         }
