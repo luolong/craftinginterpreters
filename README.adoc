@@ -80,3 +80,25 @@ List of tokens is separated into lines by a line of three dashes.
 Each token MUST be listed on a separate line in a following general format: `<tokenType> [lexeme]? [value]?`
 
 See link:lox/src/test/resources/scanner/[] for actual test cases.
+
+== Chapter 5: Representing Code
+
+=== Record classes
+
+For this chapter, I bit the bullet and deviated from the code style in the book to take advantage of more modern Java code patterns: records and sealed interfaces, where it made sense.
+
+Modern Java now also has pattern matching and destructuring for records to replace many uses of Visitor pattern.
+I kept the visitor pattern from the book for now as I have a feeling, that much of the book will have to be dealing with it.
+At least in the short term, this is going to be easier to follow the patterns outlined in the book as closely as possible.
+
+=== Sealed interfaces
+
+As an additional simplification, moving over to using sealed interface instead of abstract base class simplified both AstGenerator and the resulting Ast implementation.
+All that at the very small price of adding `()` at the end of each field accessed.
+
+=== Modules
+
+Also, as we now have several distinct concerns in out Lox implementation, this implementation adds two new modules (in addition to original `lox`) to the build:
+
+- `tool` -- for hosting the AstGenerator and any other development time tools we encounter.
+- `cli` for hosting the lox cli entrypoint (separately from the rest of the language implementation.)

@@ -7,7 +7,10 @@ package ee.tepp.craftinginterpreters.lox;
 /// The successful exit is always indicated by a status of 0, or EX_OK.
 /// Error numbers begin at EX__BASE to reduce the possibility of clashing with other exit statuses that random programs may already return.
 /// The meaning of the codes is approximately as follows
-public class Sysexits {
+public final class Sysexits {
+    private Sysexits() {
+        throw new UnsupportedOperationException("Do not instantiate!");
+    }
 
     public static final int EX_OK = 0;
 

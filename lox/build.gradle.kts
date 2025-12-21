@@ -5,8 +5,7 @@
  */
 
 plugins {
-    id("buildlogic.java-application-conventions")
-    application
+    id("buildlogic.java-library-conventions")
 }
 
 dependencies {
@@ -14,12 +13,5 @@ dependencies {
 }
 
 java {
-    manifest {
-        attributes("Main-Class" to "ee.tepp.craftinginterpreters.lox.Lox")
-    }
 }
 
-application {
-    // Define the main class for the application.
-    mainClass = "ee.tepp.craftinginterpreters.lox.Lox"
-}

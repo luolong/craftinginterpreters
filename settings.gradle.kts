@@ -11,4 +11,4 @@ plugins {
 }
 
 rootProject.name = "craftinginterpreters"
-include("lox")
+include("cli", "lox", "tool")

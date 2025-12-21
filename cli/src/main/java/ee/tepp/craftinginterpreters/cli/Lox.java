@@ -1,6 +1,9 @@
-package ee.tepp.craftinginterpreters.lox;
+package ee.tepp.craftinginterpreters.cli;
 
 import module java.base;
+import module craftinginterpreters.lox;
+
+import ee.tepp.craftinginterpreters.lox.Scanner;
 
 public class Lox {
     boolean hadError = false;

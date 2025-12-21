@@ -5,7 +5,7 @@ import static ee.tepp.craftinginterpreters.lox.TokenType.*;
 import module java.base;
 
 
-class Scanner {
+public class Scanner {
     private static final Map<String, TokenType> keywords;
 
     static {
@@ -36,12 +36,12 @@ class Scanner {
     private int current = 0;
     private int line = 1;
 
-    Scanner(String source, Diagnostics diagnostics) {
+    public Scanner(String source, Diagnostics diagnostics) {
         this.source = source;
         this.diagnostics = diagnostics;
     }
 
-    List<Token> scanTokens() {
+    public List<Token> scanTokens() {
         while (!isAtEnd()) {
             // We are at the beginning of the next lexeme.
             start = current;

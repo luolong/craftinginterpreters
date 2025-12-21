@@ -1,3 +1,3 @@
-module craftinginterpreters.lox.main {
+module craftinginterpreters.lox {
     exports ee.tepp.craftinginterpreters.lox;
 }
