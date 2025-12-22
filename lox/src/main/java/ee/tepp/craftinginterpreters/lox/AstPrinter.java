@@ -1,5 +1,8 @@
 package ee.tepp.craftinginterpreters.lox;
 
+/**
+ * Expression visitor that prints AST of the provided expression as an s-expression.
+ */
 public class AstPrinter implements Expr.Visitor<String> {
   public String print(Expr expr) {
     return expr.accept(this);
