@@ -58,22 +58,22 @@ public class Lox {
 
     private void run(String source) {
         var diagnostics = new Diagnostics();
+
         var scanner = new Scanner(source, diagnostics);
         var tokens = scanner.scanTokens();
 
-        // For now, just print the tokens.
-        for (Token token : tokens) {
-            System.out.println(token);
-        }
+        Parser parser = new Parser(tokens, diagnostics);
+        Expr expression = parser.parse();
+
+        // Stop if there was a syntax error.
+        if (hadError) return;
+
+        System.out.println(new AstPrinter().print(expression));
     }
 
     class Diagnostics implements ee.tepp.craftinginterpreters.lox.Diagnostics {
         @Override
-        public void error(int line, String message) {
-            report(line, "", message);
-        }
-
-        private void report(int line, String where, String message) {
+        public void report(int line, String where, String message) {
             System.err.println("[line " + line + "] Error" + where + ": " + message);
             hadError = true;
         }

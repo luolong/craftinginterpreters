@@ -1,0 +1,2 @@
+// AST follows order of precedence
+5*3-12/6+-12

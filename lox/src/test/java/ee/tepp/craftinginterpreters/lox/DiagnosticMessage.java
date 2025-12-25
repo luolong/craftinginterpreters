@@ -64,9 +64,22 @@ record DiagnosticMessage(int line, String where, String message) {
             if (!match("Error")) {
                 throw parseException("Expected \"Error\" prefix");
             }
-            skipWhitespace();
-            while (peek() != ':') current++;
-            return consume().trim();
+
+            start = current;
+            skipWhitespace(false);
+            while (current < source.length()) {
+                switch (peek()) {
+                    case '\'':
+                        quoted();
+                        break;
+
+                    case ':':
+                        return consume();
+                }
+                current++;
+            }
+
+            throw parseException("Unexpected End of line");
         }
 
         private String parseMessage() throws ParseException {
@@ -74,9 +87,17 @@ record DiagnosticMessage(int line, String where, String message) {
                 throw parseException("Expected \": \" separator before message");
             }
 
+            start = current;
             current = source.length();
             return consume().trim();
         }
+
+        private void quoted() {
+            var c = peek();
+            current++;
+            while (current < source.length() && peek() != c) current++;
+        }
+
 
         private ParseException parseException(String message) {
             return new ParseException(message + ":\n" + source + "\"\n" + (" ".repeat(start) + "^"), start);
@@ -84,8 +105,12 @@ record DiagnosticMessage(int line, String where, String message) {
 
 
         private void skipWhitespace() {
+            skipWhitespace(true);
+        }
+
+        private void skipWhitespace(boolean consume) {
             while (current < source.length() && Character.isWhitespace(source.charAt(current))) current++;
-            start = current;
+            if (consume) start = current;
         }
 
         private boolean match(String expected) {
@@ -104,14 +129,14 @@ record DiagnosticMessage(int line, String where, String message) {
             return true;
         }
 
-        private char peek() {
-            if (current >= source.length()) return '\0';
-            return source.charAt(current);
-        }
-
         private char peekNext() {
             if (current + 1 >= source.length()) return '\0';
             return source.charAt(current + 1);
+        }
+
+        private char peek() {
+            if (current >= source.length()) return '\0';
+            return source.charAt(current);
         }
 
         private String consume() {

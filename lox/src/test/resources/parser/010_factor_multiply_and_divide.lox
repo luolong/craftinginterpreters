@@ -1,0 +1,2 @@
+// Left associativity of factor operations
+5 * true / -nil

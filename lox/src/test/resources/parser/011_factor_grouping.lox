@@ -1,0 +1,2 @@
+// Use grouping to force right associativity
+5 * (true / -nil)
