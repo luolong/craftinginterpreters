@@ -10,6 +10,7 @@ public class GenerateAst {
         }
         String outputDir = args[0];
         defineAst(outputDir, "Expr", """
+                Comma    : Expr left, Expr right
                 Binary   : Expr left, Token operator, Expr right
                 Grouping : Expr expression
                 Literal  : Object value
@@ -28,7 +29,7 @@ public class GenerateAst {
                 
                 import module java.base;
                 
-                sealed interface %s {
+                public sealed interface %s {
                 """, baseName);
 
         defineVisitor(writer, baseName, types);
@@ -50,7 +51,6 @@ public class GenerateAst {
     }
 
     private static void defineVisitor(
-
             PrintWriter writer, String baseName, String types) {
         writer.println("  interface Visitor<R> {");
 

@@ -2,7 +2,12 @@ package ee.tepp.craftinginterpreters.lox;
 
 public class AstPrinter implements Expr.Visitor<String> {
   public String print(Expr expr) {
-    return expr.accept(this);
+    return expr != null ? expr.accept(this) : null;
+  }
+
+  @Override
+  public String visitCommaExpr(Expr.Comma expr) {
+    return parenthesize("comma", expr.left(), expr.right());
   }
 
   @Override

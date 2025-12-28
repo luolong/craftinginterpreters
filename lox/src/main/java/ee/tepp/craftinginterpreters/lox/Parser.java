@@ -11,7 +11,8 @@ import static ee.tepp.craftinginterpreters.lox.TokenType.*;
 ///
 /// The AST is based on the following grammar:
 /// ```ebnf
-/// expression     → equality ;
+/// expression     → comma;
+/// comma          → equality ( "," equality )*
 /// equality       → comparison ( ( "!=" | "==" ) comparison )* ;
 /// comparison     → term ( ( ">" | ">=" | "<" | "<=" ) term )* ;
 /// term           → factor ( ( "-" | "+" ) factor )* ;
@@ -35,7 +36,7 @@ public class Parser {
 
   public Expr parse() {
     try {
-      return expression();
+      return comma();
     } catch (ParseError error) {
       return null;
     }
@@ -46,7 +47,21 @@ public class Parser {
   /// expression     → equality ;
   /// ```
   private Expr expression() {
-    return equality();
+    return comma();
+  }
+
+  ///  Parse BNF fule for `comma` expression:
+  /// ```
+  /// ```
+  private Expr comma() {
+    Expr expr = equality();
+
+    while (match(COMMA)) {
+      Expr right = equality();
+      expr = new Expr.Comma(expr, right);
+    }
+
+    return expr;
   }
 
   /// Parse BNF rule for `equality`:

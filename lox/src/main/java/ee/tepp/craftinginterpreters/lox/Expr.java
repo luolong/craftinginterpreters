@@ -2,29 +2,20 @@ package ee.tepp.craftinginterpreters.lox;
 
 import module java.base;
 
- /// AST nodes for Lox expression grammar.
- ///
- /// The grammar itself can be formalized as follows:
- /// ```bnf
- /// expression     → literal
- ///                | unary
- ///                | binary
- ///                | grouping ;
- ///
- /// literal        → NUMBER | STRING | "true" | "false" | "nil" ;
- /// grouping       → "(" expression ")" ;
- /// unary          → ( "-" | "!" ) expression ;
- /// binary         → expression operator expression ;
- /// operator       → "==" | "!=" | "<" | "<=" | ">" | ">="
- ///                | "+"  | "-"  | "*" | "/" ;
- /// ```
-sealed public interface Expr {
+public sealed interface Expr {
   interface Visitor<R> {
+    R visitCommaExpr(Comma expr);
     R visitBinaryExpr(Binary expr);
     R visitGroupingExpr(Grouping expr);
     R visitLiteralExpr(Literal expr);
     R visitUnaryExpr(Unary expr);
-public sealed interface Expr {
+  }
+
+  record Comma(Expr left, Expr right) implements Expr {
+    @Override
+    public <R> R accept(Visitor<R> visitor) {
+      return visitor.visitCommaExpr(this);
+    }
   }
 
   record Binary(Expr left, Token operator, Expr right) implements Expr {

@@ -4,7 +4,6 @@ import static ee.tepp.craftinginterpreters.lox.TokenType.*;
 
 import module java.base;
 
-
 public class Scanner {
     private static final Map<String, TokenType> keywords;
 
