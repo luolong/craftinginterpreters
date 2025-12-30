@@ -1,0 +1,3 @@
+&err [line 2] Error at ':': Expect expression.
+
+&err [line 2] Error at ':': Missing ternary truth branch expression

@@ -1,0 +1,2 @@
+// Error: Missing ternary colon
+1 < 2 ? 4

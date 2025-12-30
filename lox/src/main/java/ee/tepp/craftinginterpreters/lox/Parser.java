@@ -12,7 +12,8 @@ import static ee.tepp.craftinginterpreters.lox.TokenType.*;
 /// The AST is based on the following grammar:
 /// ```ebnf
 /// expression     → comma;
-/// comma          → equality ( "," equality )*
+/// comma          → ternanry ( "," ternary )*
+/// ternary        → equality ( "?" equality ":" equality )?
 /// equality       → comparison ( ( "!=" | "==" ) comparison )* ;
 /// comparison     → term ( ( ">" | ">=" | "<" | "<=" ) term )* ;
 /// term           → factor ( ( "-" | "+" ) factor )* ;
@@ -54,11 +55,41 @@ public class Parser {
   /// ```
   /// ```
   private Expr comma() {
-    Expr expr = equality();
+    Expr expr = ternary();
 
     while (match(COMMA)) {
-      Expr right = equality();
+      Expr right = ternary();
       expr = new Expr.Comma(expr, right);
+    }
+
+    return expr;
+  }
+
+  /// Parse ternary expression
+  private Expr ternary() {
+    Expr expr = equality();
+    if (match(QUESTION_MARK)) {
+
+      Expr trueBranch = null;
+      try {
+        trueBranch = equality();
+      } catch (ParseError _) {
+        throw error(peek(), "Missing ternary truth branch expression");
+      }
+
+      consume(COLON, "Ternary expression without ':'");
+
+      Expr falseBranch = null;
+      try {
+        falseBranch = equality();
+      } catch (ParseError _) {
+        throw error(peek(), "Missing ternary false branch expression");
+      }
+
+      return new Expr.Ternary(expr, trueBranch, falseBranch);
+    }
+    else if (peek().isType(COLON)) {
+      throw error(peek(), "Ternary expression without '?'");
     }
 
     return expr;

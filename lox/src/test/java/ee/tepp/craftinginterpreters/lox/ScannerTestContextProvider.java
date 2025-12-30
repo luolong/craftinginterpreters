@@ -204,6 +204,8 @@ public class ScannerTestContextProvider implements TestTemplateInvocationContext
                 entry(PLUS, "+"),
                 entry(SEMICOLON, ";"),
                 entry(STAR, "*"),
+                entry(QUESTION_MARK, "?"),
+                entry(COLON, ":"),
                 entry(SLASH, "/"),
                 entry(BANG, "!"), entry(BANG_EQUAL, "!="),
                 entry(EQUAL, "="), entry(EQUAL_EQUAL, "=="),

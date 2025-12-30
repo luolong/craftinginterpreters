@@ -11,6 +11,7 @@ public class GenerateAst {
         String outputDir = args[0];
         defineAst(outputDir, "Expr", """
                 Comma    : Expr left, Expr right
+                Ternary  : Expr cond, Expr trueBranch, Expr falseBranch
                 Binary   : Expr left, Token operator, Expr right
                 Grouping : Expr expression
                 Literal  : Object value

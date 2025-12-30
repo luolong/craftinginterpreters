@@ -1,0 +1,2 @@
+// Error: Missing ternary question mark separator
+1 < 2 : 4

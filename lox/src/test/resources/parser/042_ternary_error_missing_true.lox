@@ -1,0 +1,2 @@
+// Error: Missing ternary true expression
+1 < 2 ?: 4

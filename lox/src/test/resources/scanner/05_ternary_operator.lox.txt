@@ -1,0 +1,7 @@
+================
+Ternary operator
+================
+?:
+---
+QUESTION_MARK
+COLON

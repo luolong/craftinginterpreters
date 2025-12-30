@@ -5,6 +5,7 @@ import module java.base;
 public sealed interface Expr {
   interface Visitor<R> {
     R visitCommaExpr(Comma expr);
+    R visitTernaryExpr(Ternary expr);
     R visitBinaryExpr(Binary expr);
     R visitGroupingExpr(Grouping expr);
     R visitLiteralExpr(Literal expr);
@@ -15,6 +16,13 @@ public sealed interface Expr {
     @Override
     public <R> R accept(Visitor<R> visitor) {
       return visitor.visitCommaExpr(this);
+    }
+  }
+
+  record Ternary(Expr cond, Expr trueBranch, Expr falseBranch) implements Expr {
+    @Override
+    public <R> R accept(Visitor<R> visitor) {
+      return visitor.visitTernaryExpr(this);
     }
   }
 
