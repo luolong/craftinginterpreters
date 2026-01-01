@@ -24,7 +24,6 @@ sealed public interface Expr {
     R visitGroupingExpr(Grouping expr);
     R visitLiteralExpr(Literal expr);
     R visitUnaryExpr(Unary expr);
-public sealed interface Expr {
   }
 
   record Binary(Expr left, Token operator, Expr right) implements Expr {

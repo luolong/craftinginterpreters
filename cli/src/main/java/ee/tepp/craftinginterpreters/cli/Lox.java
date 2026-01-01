@@ -6,7 +6,8 @@ import module craftinginterpreters.lox;
 import ee.tepp.craftinginterpreters.lox.Scanner;
 
 public class Lox {
-    boolean hadError = false;
+    private boolean hadError = false;
+    private boolean hadRuntimeError = false;
 
     void main(String[] args) {
         if (args.length > 1) {
@@ -40,7 +41,8 @@ public class Lox {
         run(new String(bytes, Charset.defaultCharset()));
 
         // Indicate an error in the exit code.
-        if (hadError) System.exit(65);
+        if (hadError) System.exit(Sysexits.EX_DATAERR);
+        if (hadRuntimeError) System.exit(Sysexits.EX_SOFTWARE);
     }
 
     private void runPrompt() throws IOException {
@@ -53,6 +55,7 @@ public class Lox {
             if (line == null) break;
             run(line);
             hadError = false;
+            hadRuntimeError = false;
         }
     }
 
@@ -68,7 +71,10 @@ public class Lox {
         // Stop if there was a syntax error.
         if (hadError) return;
 
-        System.out.println(new AstPrinter().print(expression));
+        var runtime = new RuntimeDiagnostics();
+        var interpreter = new Interpreter(runtime);
+        interpreter.interpret(expression);
+        hadRuntimeError = runtime.hadError();
     }
 
     class Diagnostics implements ee.tepp.craftinginterpreters.lox.Diagnostics {

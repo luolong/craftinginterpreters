@@ -8,9 +8,11 @@ public interface Diagnostics {
             report(token.line(), " at '" + token.lexeme() + "'", message);
         }
     }
+
     default void error(int line, String message) {
         report(line, "", message);
     }
+
 
     void report(int line, String where, String message);
 }
